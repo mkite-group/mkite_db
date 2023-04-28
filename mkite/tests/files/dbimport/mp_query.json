@@ -1,0 +1,10 @@
+[
+    {
+        "rester": "summary",
+        "query_function": "search",
+        "elements": ["Si"],
+        "num_elements": [1, 1],
+        "energy_above_hull": [0, 1e-6],
+        "fields": ["structure", "energy_per_atom"]
+    }
+]

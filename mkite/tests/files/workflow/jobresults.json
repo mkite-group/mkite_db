@@ -1,0 +1,91 @@
+{
+    "job": {
+        "experiment": {
+            "name": "test_relax",
+            "description": "test",
+            "project": {"name": "mols", "description": "test"}
+        },
+        "recipe": {
+            "name": "dft_relax",
+            "package": {
+                "name": "generator"
+            },
+            "method": "FT"
+        },
+        "options": {
+            "INCAR": {
+                "ENCUT": 520
+            }
+        },
+        "status": "D"
+    },
+    "runstats": {
+        "host": "borax6",
+        "cluster": "borax6.llnl.gov",
+        "duration": 11.868,
+        "ncores": 36,
+        "ngpus": 0,
+        "pkgversion": "1.0"
+    },
+    "nodes": [
+        {
+            "chemnode": {
+                "species": [
+                    "Si",
+                    "Si"
+                ],
+                "coords": [
+                    [
+                        0,
+                        0,
+                        0
+                    ],
+                    [
+                        1.367286,
+                        1.367286,
+                        1.367286
+                    ]
+                ],
+                "lattice": [
+                    [
+                        0,
+                        2.734572,
+                        2.734572
+                    ],
+                    [
+                        2.734572,
+                        0,
+                        2.734572
+                    ],
+                    [
+                        2.734572,
+                        2.734572,
+                        0
+                    ]
+                ],
+                "attributes": {},
+                "@module": "mkite.orm.structs.models",
+                "@class": "Crystal"
+            },
+            "calcnodes": [
+                {
+                    "@module": "mkite.orm.calcs.models",
+                    "@class": "EnergyForces",
+                    "energy": -10.84136528,
+                    "forces": [
+                        [
+                            -0,
+                            -0,
+                            -0
+                        ],
+                        [
+                            0,
+                            0,
+                            0
+                        ]
+                    ]
+                }
+            ]
+        }
+    ]
+}

@@ -1,0 +1,6 @@
+- smiles: CO
+- smiles: "c1ccccc1"
+- smiles: C(=O)=O
+  attributes:
+    name: "carbon dioxide"
+

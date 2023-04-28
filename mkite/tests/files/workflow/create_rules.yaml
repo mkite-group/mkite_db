@@ -1,0 +1,27 @@
+- out_experiment: test_exp1
+  out_recipe: test_recipe2
+  inputs: 
+    - filter:
+        parentjob__experiment__name: test_exp1
+        parentjob__recipe__name: test_recipe1
+
+- out_experiment: test_exp1
+  out_recipe: test_recipe3
+  inputs: 
+    - filter:
+        parentjob__experiment__name: test_exp1
+        parentjob__recipe__name: test_recipe2
+
+- out_experiment: test_exp2
+  out_recipe: test_recipe4
+  inputs: 
+    - filter:
+        parentjob__experiment__name: test_exp1
+        parentjob__recipe__name: test_recipe3
+
+- out_experiment: test_exp2
+  out_recipe: test_recipe5
+  inputs: 
+    - filter:
+        parentjob__experiment__name: test_exp2
+        parentjob__recipe__name: test_recipe4
