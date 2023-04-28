@@ -5,10 +5,29 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "mkite"
 version = "0.1.0"
-description = "mkite is an ETL pipeline for materials simulation"
+description = "mkite: distributed computing platform for high-throughput materials simulations"
 authors = [{name = "Daniel Schwalbe-Koda", email = "dskoda@llnl.gov"}]
 readme = "README.md"
 requires-python = ">=3.8"
+keywords = ["workflow", "materials-science"]
+dependencies = [
+    "Django >= 4.2",
+    "django-taggit",
+    "django-environ",
+    "django-filter",
+    "django-extensions >= 3.2.1",
+    "django-coverage",
+    "djangorestframework >= 3.14.0",
+    "psycopg >= 3.1.8",
+    "model_bakery",
+    "msgspec >= 0.14.1",
+    "click",
+    "pydantic",
+    "ase",
+    "pymatgen",
+    "rdkit",
+    "mp_api",
+]
 
 [project.scripts]
 kitedb = "mkite.cli.run_manage:main"
