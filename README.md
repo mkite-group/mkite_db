@@ -1,5 +1,5 @@
 <div align="center">
-  <img src=docs/_static/mkite-logo.svg width="500"><br>
+  <img src="https://raw.githubusercontent.com/mkite-group/mkite_db/main/docs/_static/mkite-logo.svg" width="500"><br>
 </div>
 
 # What is mkite?
