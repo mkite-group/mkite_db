@@ -27,7 +27,7 @@ Then, install this repository with pip:
 
 ```bash
 pip install mkite_core mkite_engines
-pip install mkite
+pip install mkite_db
 ```
 
 Alternatively, for a development version, clone this repo and install it in editable form:

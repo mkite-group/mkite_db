@@ -3,7 +3,7 @@ requires = ["setuptools", "setuptools-scm"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "mkite"
+name = "mkite_db"
 version = "0.1.0"
 description = "mkite: distributed computing platform for high-throughput materials simulations"
 authors = [{name = "Daniel Schwalbe-Koda", email = "dskoda@llnl.gov"}]
@@ -34,4 +34,4 @@ dependencies = [
 kitedb = "mkite.cli.run_manage:main"
 
 [tool.setuptools]
-packages = ["mkite"]
+packages = ["mkite_db"]
