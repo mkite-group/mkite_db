@@ -4,8 +4,8 @@ from typing import List
 from mkite_core.external import load_config
 from django.core.management.base import BaseCommand, CommandError
 
-from mkite import dbimport as dbimp
 from mkite_core.models import JobResults
+from mkite_db import dbimport as dbimp
 from mkite_db.workflow.parse import JobParser
 
 from mkite_db.orm.jobs.models import Job
