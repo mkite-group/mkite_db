@@ -108,7 +108,7 @@ class TestMPImporter(ut.TestCase):
             project="test_prj",
             experiment="test_exp",
             isroot=True,
-            **self.get_query_args()
+            **self.get_query_args(),
         )
         self.assertIsInstance(results, JobResults)
 

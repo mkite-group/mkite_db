@@ -12,9 +12,7 @@ if not MKITE_ENV_KEY in os.environ:
     )
 MKITE_ENV = os.environ[MKITE_ENV_KEY]
 if not os.path.exists(MKITE_ENV):
-    raise FileNotFoundError(
-        f"Could not find environment file {MKITE_ENV}."
-    )
+    raise FileNotFoundError(f"Could not find environment file {MKITE_ENV}.")
 
 # Reads the access to the database via environmental variables
 env = environ.Env(DEBUG=(bool, False))
@@ -26,7 +24,7 @@ SECRET_KEY = env("SECRET_KEY")
 ALLOWED_HOSTS = env.list("DJANGO_ALLOWED_HOSTS", default=["*"])
 
 # Sets up the database connection
-DATABASES = {'default': env.db()}
+DATABASES = {"default": env.db()}
 
 # Application definition
 DJANGO_APPS = [
@@ -84,7 +82,9 @@ WSGI_APPLICATION = "cfg.wsgi.application"
 
 # Password validation
 AUTH_PASSWORD_VALIDATORS = [
-    {"NAME": "django.contrib.auth.password_validation.UserAttributeSimilarityValidator"},
+    {
+        "NAME": "django.contrib.auth.password_validation.UserAttributeSimilarityValidator"
+    },
     {"NAME": "django.contrib.auth.password_validation.MinimumLengthValidator"},
     {"NAME": "django.contrib.auth.password_validation.CommonPasswordValidator"},
     {"NAME": "django.contrib.auth.password_validation.NumericPasswordValidator"},

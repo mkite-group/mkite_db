@@ -31,9 +31,7 @@ class Command(BaseCommand):
         )
         return argparser
 
-    def handle(
-        self, engine_config, *args, num_parse=1000, **kwargs
-    ):
+    def handle(self, engine_config, *args, num_parse=1000, **kwargs):
         self.engine = self.get_engine(engine_config)
         self.log("notice", f"Parsing from engine: {engine_config}")
         self.parse_all(num_parse)

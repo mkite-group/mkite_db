@@ -28,7 +28,7 @@ class AseFileImporter(DbImporter):
 
     def convert(self, parsed: List[dict]) -> List[NodeResults]:
         """Converts the files into Infos, which is then converted into a
-        Node. 
+        Node.
         """
         return [self.convert_item(atoms) for atoms in parsed]
 
@@ -39,7 +39,7 @@ class AseFileImporter(DbImporter):
             info = self.get_conformer_info(atoms)
 
         return NodeResults(chemnode=info.as_dict())
-    
+
     def get_crystal_info(self, atoms: Atoms) -> CrystalInfo:
         return CrystalInfo.from_ase(atoms)
 
