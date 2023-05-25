@@ -3,7 +3,7 @@ from typing import List
 from mkite_core.external import load_config
 from django.core.management.base import BaseCommand, CommandError
 
-from mkite.workflow.create import InputQuery, JOB_CREATORS
+from mkite_db.workflow.create import InputQuery, JOB_CREATORS
 
 
 class Command(BaseCommand):

@@ -10,16 +10,16 @@ from django.core.management import call_command
 
 from pkg_resources import resource_filename
 
-from mkite.orm.jobs.models import Job, Experiment, Project
+from mkite_db.orm.jobs.models import Job, Experiment, Project
 from mkite_core.models import JobResults
 from mkite_core.tests.tempdirs import run_in_tempdir
-from mkite.workflow.management.commands.dbimport import Command, DB_IMPORTERS
+from mkite_db.workflow.management.commands.dbimport import Command, DB_IMPORTERS
 
-from mkite.dbimport.tests.test_mp import MockMPImporter
+from mkite_db.dbimport.tests.test_mp import MockMPImporter
 
 
-JOB_RESULTS_FILE = resource_filename("mkite.tests.files.workflow", "jobresults.json")
-MP_QUERY_FILE = resource_filename("mkite.tests.files.dbimport", "mp_query.json")
+JOB_RESULTS_FILE = resource_filename("mkite_db.tests.files.workflow", "jobresults.json")
+MP_QUERY_FILE = resource_filename("mkite_db.tests.files.dbimport", "mp_query.json")
 
 MOCK_DB_IMPORTERS = {
     "MockMPImporter": MockMPImporter,
@@ -116,7 +116,7 @@ class TestCommand(TestCase, QueryMixin):
 
     @ut.skipIf("MP_API_KEY" not in os.environ, "MP_API_KEY is not in environment")
     @patch.dict(
-        "mkite.workflow.management.commands.dbimport.DB_IMPORTERS", MOCK_DB_IMPORTERS
+        "mkite_db.workflow.management.commands.dbimport.DB_IMPORTERS", MOCK_DB_IMPORTERS
     )
     def test_call(self):
         self.call_command(

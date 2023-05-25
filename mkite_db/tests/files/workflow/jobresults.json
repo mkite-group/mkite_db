@@ -64,12 +64,12 @@
                     ]
                 ],
                 "attributes": {},
-                "@module": "mkite.orm.structs.models",
+                "@module": "mkite_db.orm.structs.models",
                 "@class": "Crystal"
             },
             "calcnodes": [
                 {
-                    "@module": "mkite.orm.calcs.models",
+                    "@module": "mkite_db.orm.calcs.models",
                     "@class": "EnergyForces",
                     "energy": -10.84136528,
                     "forces": [

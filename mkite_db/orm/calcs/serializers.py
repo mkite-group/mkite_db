@@ -1,7 +1,7 @@
 from django.db import transaction
 from rest_framework import serializers
 
-from mkite.orm.base.serializers import CalcNodeSerializer
+from mkite_db.orm.base.serializers import CalcNodeSerializer
 
 from .models import EnergyForces, Feature
 

@@ -5,14 +5,14 @@ from pkg_resources import resource_filename
 
 from collections import namedtuple
 from mkite_core.models import JobResults
-from mkite.orm.jobs.models import Job, JobStatus, RunStats
-from mkite.orm.structs.models import Crystal
-from mkite.orm.calcs.models import EnergyForces
+from mkite_db.orm.jobs.models import Job, JobStatus, RunStats
+from mkite_db.orm.structs.models import Crystal
+from mkite_db.orm.calcs.models import EnergyForces
 
-from mkite.workflow.parse import JobParser
+from mkite_db.workflow.parse import JobParser
 
 
-RESULTS_FILE = resource_filename("mkite.tests.files.workflow", "jobresults.json")
+RESULTS_FILE = resource_filename("mkite_db.tests.files.workflow", "jobresults.json")
 
 
 class TestParser(TestCase):

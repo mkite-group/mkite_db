@@ -2,8 +2,8 @@ import unittest as ut
 from django.test import TestCase
 from model_bakery import baker
 
-from mkite.orm.models import Crystal, Job, RunStats
-from mkite.orm.jobs.deleter import delete_tree
+from mkite_db.orm.models import Crystal, Job, RunStats
+from mkite_db.orm.jobs.deleter import delete_tree
 
 
 class TestDeleter(TestCase):

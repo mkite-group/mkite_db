@@ -2,12 +2,12 @@ import unittest as ut
 from model_bakery import baker
 from django.test import TestCase
 
-from mkite.orm.base.models import ChemNode
-from mkite.orm.base.serializers import ChemNodeSerializer
-from mkite.orm.jobs.models import Job
-from mkite.orm.jobs.serializers import JobSerializer
-from mkite.orm.calcs.models import Feature, EnergyForces
-from mkite.orm.calcs.serializers import EnergyForcesSerializer, FeatureSerializer
+from mkite_db.orm.base.models import ChemNode
+from mkite_db.orm.base.serializers import ChemNodeSerializer
+from mkite_db.orm.jobs.models import Job
+from mkite_db.orm.jobs.serializers import JobSerializer
+from mkite_db.orm.calcs.models import Feature, EnergyForces
+from mkite_db.orm.calcs.serializers import EnergyForcesSerializer, FeatureSerializer
 
 
 class TestFeatureSerializer(TestCase):
@@ -21,7 +21,7 @@ class TestFeatureSerializer(TestCase):
         data = serial.data
 
         expected = {
-            "@module": "mkite.orm.calcs.models",
+            "@module": "mkite_db.orm.calcs.models",
             "@class": "Feature",
             **self.dict,
         }
@@ -35,7 +35,7 @@ class TestFeatureSerializer(TestCase):
     def test_deserialize(self):
         chemnode = baker.make(ChemNode)
         data = {
-            "@module": "mkite.orm.calcs.models",
+            "@module": "mkite_db.orm.calcs.models",
             "@class": "Feature",
             "parentjob": {"id": chemnode.parentjob.id},
             "chemnode": {"id": chemnode.id},
@@ -54,7 +54,7 @@ class TestEnergyForcesSerializer(TestCase):
     def test_deserialize(self):
         chem = baker.make(ChemNode)
         data = {
-            "@module": "mkite.orm.calcs.models",
+            "@module": "mkite_db.orm.calcs.models",
             "@class": "EnergyForces",
             "parentjob": {"id": chem.parentjob.id},
             "chemnode": {"id": chem.id},
@@ -81,7 +81,7 @@ class TestEnergyForcesSerializer(TestCase):
             "chemnode": chemdata,
             "energy": node.energy,
             "forces": node.forces,
-            "@module": "mkite.orm.calcs.models",
+            "@module": "mkite_db.orm.calcs.models",
             "@class": "EnergyForces",
         }
         serial = EnergyForcesSerializer(node)

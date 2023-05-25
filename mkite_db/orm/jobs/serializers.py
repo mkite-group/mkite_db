@@ -2,7 +2,7 @@ from datetime import timedelta
 from rest_framework import serializers
 
 from taggit.serializers import TagListSerializerField, TaggitSerializer
-from mkite.orm.serializers import BaseSerializer
+from mkite_db.orm.serializers import BaseSerializer
 
 from .models import Project, Experiment, Job, JobRecipe, JobPackage, RunStats
 

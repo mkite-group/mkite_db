@@ -2,8 +2,8 @@ from typing import List, Dict, Union, Iterable, Tuple
 from abc import ABC, abstractmethod
 from pydantic import BaseModel, Field
 
-from mkite.orm.base.models import ChemNode
-from mkite.orm.jobs.models import Job, JobRecipe, Experiment
+from mkite_db.orm.base.models import ChemNode
+from mkite_db.orm.jobs.models import Job, JobRecipe, Experiment
 
 
 class JobCreationError(Exception):

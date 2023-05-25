@@ -1,7 +1,7 @@
 from rest_framework import serializers
 
-from mkite.orm.serializers import BaseSerializer
-from mkite.orm.jobs.serializers import JobSerializer
+from mkite_db.orm.serializers import BaseSerializer
+from mkite_db.orm.jobs.serializers import JobSerializer
 from .models import Formula, ChemNode, CalcNode
 
 

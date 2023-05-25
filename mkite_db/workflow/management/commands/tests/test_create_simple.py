@@ -5,8 +5,8 @@ from model_bakery import baker
 from django.test import TestCase
 from django.core.management import call_command
 
-from mkite.orm.structs.models import Crystal
-from mkite.orm.jobs.models import Job, JobStatus, JobRecipe, Experiment
+from mkite_db.orm.structs.models import Crystal
+from mkite_db.orm.jobs.models import Job, JobStatus, JobRecipe, Experiment
 
 
 class TestCommand(TestCase):

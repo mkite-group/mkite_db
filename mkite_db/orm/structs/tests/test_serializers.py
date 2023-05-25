@@ -1,9 +1,9 @@
 from model_bakery import baker
 from django.test import TestCase
 
-from mkite.orm.base.models import Formula
-from mkite.orm.jobs.models import Job
-from mkite.orm.structs.serializers import CrystalSerializer
+from mkite_db.orm.base.models import Formula
+from mkite_db.orm.jobs.models import Job
+from mkite_db.orm.structs.serializers import CrystalSerializer
 
 from .test_models import CrystalCreator
 

@@ -3,8 +3,8 @@ import itertools
 from typing import List, Dict, Tuple
 
 from django.db.models import QuerySet
-from mkite.orm.base.models import ChemNode
-from mkite.orm.jobs.models import Job
+from mkite_db.orm.base.models import ChemNode
+from mkite_db.orm.jobs.models import Job
 
 from .base import BaseJobCreator, JobCreationError
 

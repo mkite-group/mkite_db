@@ -5,17 +5,17 @@ from django.test import TestCase
 from django.core.management import call_command
 from pkg_resources import resource_filename
 
-from mkite.orm.jobs.models import Job
+from mkite_db.orm.jobs.models import Job
 from mkite_core.models import JobResults
 from mkite_core.external import load_config
 from mkite_core.tests.tempdirs import run_in_tempdir
 from mkite_engines import Status
-from mkite.workflow.management.commands.parse import Command
+from mkite_db.workflow.management.commands.parse import Command
 
 
-ENGINE = resource_filename("mkite.tests.files", "engine.yaml")
+ENGINE = resource_filename("mkite_db.tests.files", "engine.yaml")
 ENGINE_CFG = load_config(ENGINE)
-JOB_RESULTS_FILE = resource_filename("mkite.tests.files.workflow", "jobresults.json")
+JOB_RESULTS_FILE = resource_filename("mkite_db.tests.files.workflow", "jobresults.json")
 
 
 def _prepare_folder():

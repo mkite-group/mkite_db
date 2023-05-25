@@ -5,7 +5,7 @@ from django.test import TestCase
 from rest_framework import serializers
 from collections.abc import Mapping
 
-from mkite.orm.jobs.models import (
+from mkite_db.orm.jobs.models import (
     Project,
     Experiment,
     JobPackage,
@@ -14,7 +14,7 @@ from mkite.orm.jobs.models import (
     Job,
     JobStatus,
 )
-from mkite.orm.jobs.serializers import (
+from mkite_db.orm.jobs.serializers import (
     ProjectSerializer,
     ExperimentSerializer,
     JobPackageSerializer,

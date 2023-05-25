@@ -3,10 +3,10 @@ from model_bakery import baker
 from django.test import TestCase
 from pkg_resources import resource_filename
 
-from mkite.orm.base.models import Formula
-from mkite.orm.jobs.models import Job
-from mkite.orm.mols.models import Molecule, Conformer
-from mkite.orm.mols.serializers import (
+from mkite_db.orm.base.models import Formula
+from mkite_db.orm.jobs.models import Job
+from mkite_db.orm.mols.models import Molecule, Conformer
+from mkite_db.orm.mols.serializers import (
     MoleculeSerializer,
     ConformerSerializer,
 )

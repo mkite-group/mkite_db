@@ -4,7 +4,7 @@ from django.core.exceptions import ObjectDoesNotExist
 from django.core.management.base import BaseCommand, CommandError
 
 from mkite_engines import Status, EngineRoles, instantiate_from_path
-from mkite.orm.jobs.models import Job, JobStatus, JobRecipe, Experiment, Project
+from mkite_db.orm.jobs.models import Job, JobStatus, JobRecipe, Experiment, Project
 
 
 class Command(BaseCommand):

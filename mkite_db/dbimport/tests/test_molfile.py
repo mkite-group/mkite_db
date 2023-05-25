@@ -5,10 +5,10 @@ from unittest.mock import MagicMock
 from pkg_resources import resource_filename
 
 from mkite_core.models import MoleculeInfo, NodeResults, JobResults
-from mkite.dbimport.molfile import MolFileImporter
+from mkite_db.dbimport.molfile import MolFileImporter
 
 
-MOLFILE = resource_filename("mkite.tests.files.dbimport", "molfile.yaml")
+MOLFILE = resource_filename("mkite_db.tests.files.dbimport", "molfile.yaml")
 
 
 class TestMolFileImporter(ut.TestCase):

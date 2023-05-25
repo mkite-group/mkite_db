@@ -2,8 +2,8 @@ from django.db import models
 from django.contrib.postgres.fields import ArrayField
 
 from taggit.managers import TaggableManager
-from mkite.orm.repr import _named_repr
-from mkite.orm.base.models import DbEntry, ChemNode, Elements, Formula
+from mkite_db.orm.repr import _named_repr
+from mkite_db.orm.base.models import DbEntry, ChemNode, Elements, Formula
 
 
 class Molecule(ChemNode):

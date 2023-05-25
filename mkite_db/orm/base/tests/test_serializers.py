@@ -1,10 +1,10 @@
 from model_bakery import baker
 from django.test import TestCase
 
-from mkite.orm.base.models import Formula, ChemNode, CalcNode
-from mkite.orm.jobs.models import Job
-from mkite.orm.jobs.serializers import JobSerializer
-from mkite.orm.base.serializers import (
+from mkite_db.orm.base.models import Formula, ChemNode, CalcNode
+from mkite_db.orm.jobs.models import Job
+from mkite_db.orm.jobs.serializers import JobSerializer
+from mkite_db.orm.base.serializers import (
     FormulaSerializer,
     ChemNodeSerializer,
     CalcNodeSerializer,
@@ -26,7 +26,7 @@ class TestFormulaSerializer(TestCase):
 
         self.assertTrue("id" in data)
         expected = {
-            "@module": "mkite.orm.base.models",
+            "@module": "mkite_db.orm.base.models",
             "@class": "Formula",
             "name": "H20 C8 N1 +1",
             "charge": 1,
@@ -49,7 +49,7 @@ class TestChemSerializer(TestCase):
     def test_deserialize(self):
         job = baker.make(Job)
         data = {
-            "@module": "mkite.orm.base.models",
+            "@module": "mkite_db.orm.base.models",
             "@class": "ChemNode",
             "parentjob": {"id": job.id},
         }
@@ -63,7 +63,7 @@ class TestChemSerializer(TestCase):
         node = baker.make(ChemNode)
         jobdata = JobSerializer(node.parentjob).data
         expected = {
-            "@module": "mkite.orm.base.models",
+            "@module": "mkite_db.orm.base.models",
             "@class": "ChemNode",
             "parentjob": jobdata,
             "id": node.id,
@@ -78,7 +78,7 @@ class TestCalcSerializer(TestCase):
     def test_deserialize(self):
         chem = baker.make(ChemNode)
         data = {
-            "@module": "mkite.orm.base.models",
+            "@module": "mkite_db.orm.base.models",
             "@class": "CalcNode",
             "parentjob": {"id": chem.parentjob.id},
             "chemnode": {"id": chem.id},
@@ -95,7 +95,7 @@ class TestCalcSerializer(TestCase):
         jobdata = JobSerializer(node.parentjob).data
         chemdata = ChemNodeSerializer(node.chemnode).data
         expected = {
-            "@module": "mkite.orm.base.models",
+            "@module": "mkite_db.orm.base.models",
             "@class": "CalcNode",
             "parentjob": jobdata,
             "chemnode": chemdata,

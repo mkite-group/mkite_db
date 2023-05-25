@@ -1,6 +1,6 @@
 from django.core.management.base import BaseCommand, CommandError
 
-from mkite.orm.jobs.models import Project, Experiment
+from mkite_db.orm.jobs.models import Project, Experiment
 
 
 class Command(BaseCommand):

@@ -3,7 +3,7 @@ from io import StringIO
 from django.test import TestCase
 from django.core.management import call_command
 
-from mkite.orm.jobs.management.commands.scanrecipes import Command
+from mkite_db.orm.jobs.management.commands.scanrecipes import Command
 
 
 class TestCommand(TestCase):

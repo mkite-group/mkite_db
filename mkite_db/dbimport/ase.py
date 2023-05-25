@@ -13,7 +13,7 @@ class AseFileImporter(DbImporter):
         "name": "dbimport.AseFileImporter",
         "method": "EXT",
     }
-    PACKAGE_DICT = {"name": "mkite.dbimport"}
+    PACKAGE_DICT = {"name": "mkite_db.dbimport"}
 
     def query(self, filename: os.PathLike, **kwargs):
         """Opens the file provided and returns its contents.

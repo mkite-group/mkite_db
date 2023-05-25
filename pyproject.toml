@@ -31,7 +31,7 @@ dependencies = [
 ]
 
 [project.scripts]
-kitedb = "mkite.cli.run_manage:main"
+kitedb = "mkite_db.cli.run_manage:main"
 
 [tool.setuptools]
 packages = ["mkite_db"]

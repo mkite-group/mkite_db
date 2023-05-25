@@ -1,6 +1,6 @@
 from django.core.management.base import BaseCommand
 
-from mkite.orm.jobs.models import Project
+from mkite_db.orm.jobs.models import Project
 
 
 class Command(BaseCommand):

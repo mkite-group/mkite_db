@@ -2,8 +2,8 @@ from datetime import timedelta
 from django.db import models
 from django.core.serializers.json import DjangoJSONEncoder
 
-from mkite.orm.repr import _named_repr
-from mkite.orm.base.models import DbEntry
+from mkite_db.orm.repr import _named_repr
+from mkite_db.orm.base.models import DbEntry
 from taggit.managers import TaggableManager
 
 

@@ -6,11 +6,11 @@ from pkg_resources import resource_filename
 from django.test import TestCase
 from django.core.management import call_command
 
-from mkite.orm.structs.models import Crystal
-from mkite.orm.jobs.models import Job, JobStatus, JobRecipe, Experiment
+from mkite_db.orm.structs.models import Crystal
+from mkite_db.orm.jobs.models import Job, JobStatus, JobRecipe, Experiment
 
 
-RULES_FILE = resource_filename("mkite.tests.files.workflow", "create_rules.yaml")
+RULES_FILE = resource_filename("mkite_db.tests.files.workflow", "create_rules.yaml")
 
 
 class TestCommand(TestCase):

@@ -33,7 +33,7 @@ class BaseSerializer(serializers.ModelSerializer):
 
     def _setup_serializer_as_field(self):
         """Useful to bypass validation when nested serializers are used
-        in mkite. Ensures then that the rest of the validation is
+        in mkite_db. Ensures then that the rest of the validation is
         performed by the user at the creation/update stage.
         """
         for field_name, field in self.fields.items():

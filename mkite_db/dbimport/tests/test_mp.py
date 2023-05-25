@@ -8,10 +8,10 @@ from pkg_resources import resource_filename
 
 from pymatgen.core import Structure
 from mkite_core.models import CrystalInfo, EnergyForcesInfo, NodeResults, JobResults
-from mkite.dbimport.mp import MPImporter, MP_KEY
+from mkite_db.dbimport.mp import MPImporter, MP_KEY
 
 
-RESPONSE_PATH = resource_filename("mkite.tests.files.dbimport", "mp.json")
+RESPONSE_PATH = resource_filename("mkite_db.tests.files.dbimport", "mp.json")
 
 
 class MockDoc(dict):

@@ -4,11 +4,11 @@ from pkg_resources import resource_filename
 from ase import Atoms
 from ase.io import read
 from mkite_core.models import CrystalInfo, ConformerInfo, NodeResults
-from mkite.dbimport.ase import AseFileImporter
+from mkite_db.dbimport.ase import AseFileImporter
 
 
-CIF_FILE = resource_filename("mkite.tests.files.dbimport", "silicon.cif")
-XYZ_FILE = resource_filename("mkite.tests.files.dbimport", "caffeine.xyz")
+CIF_FILE = resource_filename("mkite_db.tests.files.dbimport", "silicon.cif")
+XYZ_FILE = resource_filename("mkite_db.tests.files.dbimport", "caffeine.xyz")
 
 
 class TestAseFileImporter(ut.TestCase):

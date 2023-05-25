@@ -1,9 +1,9 @@
 from model_bakery import baker
 from django.test import TestCase
 
-from mkite.orm.base.models import Formula
-from mkite.orm.jobs.models import Job
-from mkite.orm.mols.models import Molecule, Conformer
+from mkite_db.orm.base.models import Formula
+from mkite_db.orm.jobs.models import Job
+from mkite_db.orm.mols.models import Molecule, Conformer
 
 
 class MolCreator:
@@ -79,7 +79,7 @@ class TestMols(TestCase):
         data = mol.as_dict()
 
         expected = {
-            "@module": "mkite.orm.mols.models",
+            "@module": "mkite_db.orm.mols.models",
             "@class": "Molecule",
             "id": mol.id,
             "uuid": str(mol.uuid),

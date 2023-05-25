@@ -5,12 +5,12 @@ from model_bakery import baker
 from unittest.mock import patch
 from django.test import TestCase
 
-from mkite.orm.base.models import ChemNode
-from mkite.orm.structs.models import Crystal
-from mkite.orm.jobs.models import Job, JobStatus, JobRecipe, Experiment
+from mkite_db.orm.base.models import ChemNode
+from mkite_db.orm.structs.models import Crystal
+from mkite_db.orm.jobs.models import Job, JobStatus, JobRecipe, Experiment
 
-from mkite.workflow.create import InputQuery
-from mkite.workflow.create.simple import SimpleJobCreator
+from mkite_db.workflow.create import InputQuery
+from mkite_db.workflow.create.simple import SimpleJobCreator
 
 
 class TestJobCreator(TestCase):

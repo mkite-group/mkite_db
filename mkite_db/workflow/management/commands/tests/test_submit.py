@@ -9,15 +9,15 @@ from django.db import models
 from django.core.management import call_command
 from pkg_resources import resource_filename
 
-from mkite.orm.jobs.models import Job, JobStatus, JobRecipe, Experiment, Project
+from mkite_db.orm.jobs.models import Job, JobStatus, JobRecipe, Experiment, Project
 from mkite_core.tests.tempdirs import run_in_tempdir
-from mkite.workflow.management.commands.submit import Command, CommandError
+from mkite_db.workflow.management.commands.submit import Command, CommandError
 
 from mkite_core.tests.tempdirs import run_in_tempdir
 from mkite_engines import LocalProducer
 
 
-ENGINE = resource_filename("mkite.tests.files", "engine.yaml")
+ENGINE = resource_filename("mkite_db.tests.files", "engine.yaml")
 
 
 class TestCommand(TestCase):

@@ -6,9 +6,9 @@ from django.core.management.base import BaseCommand, CommandError
 
 from mkite import dbimport as dbimp
 from mkite_core.models import JobResults
-from mkite.workflow.parse import JobParser
+from mkite_db.workflow.parse import JobParser
 
-from mkite.orm.jobs.models import Job
+from mkite_db.orm.jobs.models import Job
 
 
 DB_IMPORTERS = {cls.__name__: cls for cls in dbimp.DbImporter.__subclasses__()}

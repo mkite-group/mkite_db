@@ -1,6 +1,6 @@
 from datetime import timedelta
 from django.test import TestCase
-from mkite.orm.jobs.models import (
+from mkite_db.orm.jobs.models import (
     Project,
     Experiment,
     JobStatus,

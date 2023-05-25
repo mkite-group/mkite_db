@@ -2,9 +2,9 @@ import json
 from django.test import TestCase
 from pkg_resources import resource_filename
 
-from mkite.orm.deserializers import get_serializer
-from mkite.orm.mols.models import Molecule
-from mkite.orm.structs.models import Crystal
+from mkite_db.orm.deserializers import get_serializer
+from mkite_db.orm.mols.models import Molecule
+from mkite_db.orm.structs.models import Crystal
 
 
 MOL_JSON = resource_filename("mkite_core.tests.files.models", "molecule.json")

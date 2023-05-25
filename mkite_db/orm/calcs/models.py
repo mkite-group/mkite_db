@@ -1,7 +1,7 @@
 from django.db import models
 from django.contrib.postgres.fields import ArrayField
 
-from mkite.orm.base.models import CalcNode
+from mkite_db.orm.base.models import CalcNode
 
 
 class EnergyForces(CalcNode):

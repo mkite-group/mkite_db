@@ -1,18 +1,18 @@
-from mkite.orm.base.serializers import (
+from mkite_db.orm.base.serializers import (
     FormulaSerializer,
     ChemNodeSerializer,
     CalcNodeSerializer,
 )
-from mkite.orm.calcs.serializers import (
+from mkite_db.orm.calcs.serializers import (
     EnergyForcesSerializer,
     FeatureSerializer,
 )
-from mkite.orm.structs.serializers import CrystalSerializer
-from mkite.orm.mols.serializers import (
+from mkite_db.orm.structs.serializers import CrystalSerializer
+from mkite_db.orm.mols.serializers import (
     MoleculeSerializer,
     ConformerSerializer,
 )
-from mkite.orm.jobs.serializers import (
+from mkite_db.orm.jobs.serializers import (
     ProjectSerializer,
     ExperimentSerializer,
     JobPackageSerializer,

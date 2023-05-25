@@ -3,10 +3,10 @@ from typing import Iterable
 from django.core.management.base import BaseCommand, CommandError
 
 from mkite_core.models import JobResults
-from mkite.workflow.parse import JobParser
+from mkite_db.workflow.parse import JobParser
 from mkite_engines import Status, EngineRoles, instantiate_from_path
 
-from mkite.orm.jobs.models import Job
+from mkite_db.orm.jobs.models import Job
 
 
 class Command(BaseCommand):

@@ -3,8 +3,8 @@ from collections import namedtuple
 from django.db import transaction
 
 from mkite_core.models import JobResults
-from mkite.orm.deserializers import get_serializer, DeserializeError
-from mkite.orm.jobs.serializers import JobSerializer, RunStatsSerializer
+from mkite_db.orm.deserializers import get_serializer, DeserializeError
+from mkite_db.orm.jobs.serializers import JobSerializer, RunStatsSerializer
 
 
 ParserOutput = namedtuple("ParserOutput", "job runstats nodes")

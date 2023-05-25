@@ -11,7 +11,7 @@ class MolFileImporter(DbImporter):
         "name": "dbimport.MolFileImporter",
         "method": "EXT",
     }
-    PACKAGE_DICT = {"name": "mkite.dbimport"}
+    PACKAGE_DICT = {"name": "mkite_db.dbimport"}
 
     def query(self, **kwargs):
         """Opens the file provided and returns its contents.

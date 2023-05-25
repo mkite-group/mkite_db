@@ -1,6 +1,6 @@
 import unittest as ut
 
-from mkite.orm.repr import _named_repr
+from mkite_db.orm.repr import _named_repr
 
 
 class MockObject:

@@ -1,9 +1,9 @@
 from model_bakery import baker
 from django.test import TestCase
 
-from mkite.orm.base.models import Formula
-from mkite.orm.jobs.models import Job
-from mkite.orm.structs.models import Crystal, SpaceGroups
+from mkite_db.orm.base.models import Formula
+from mkite_db.orm.jobs.models import Job
+from mkite_db.orm.structs.models import Crystal, SpaceGroups
 from mkite_core.models import CrystalInfo
 
 

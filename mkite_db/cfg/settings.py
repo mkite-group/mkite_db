@@ -41,12 +41,12 @@ DJANGO_APPS = [
 THIRD_PARTY_APPS = ["django_extensions", "rest_framework", "taggit"]
 
 LOCAL_APPS = [
-    "mkite.orm.base",
-    "mkite.orm.jobs",
-    "mkite.orm.calcs",
-    "mkite.orm.mols",
-    "mkite.orm.structs",
-    "mkite.workflow",
+    "mkite_db.orm.base",
+    "mkite_db.orm.jobs",
+    "mkite_db.orm.calcs",
+    "mkite_db.orm.mols",
+    "mkite_db.orm.structs",
+    "mkite_db.workflow",
 ]
 
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS

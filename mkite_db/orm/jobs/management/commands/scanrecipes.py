@@ -2,8 +2,8 @@ from importlib import metadata
 from django.core.management.base import BaseCommand, CommandError
 
 from mkite_core.plugins import get_recipes
-from mkite.orm.jobs.models import JobRecipe
-from mkite.orm.jobs.serializers import JobRecipeSerializer
+from mkite_db.orm.jobs.models import JobRecipe
+from mkite_db.orm.jobs.serializers import JobRecipeSerializer
 
 
 class Command(BaseCommand):
@@ -22,7 +22,7 @@ class Command(BaseCommand):
         return argparser
 
     def handle(self, *args, dry_run=False, **kwargs):
-        self.log("notice", f"Scanning entry point mkite.recipes...")
+        self.log("notice", f"Scanning entry point mkite_db.recipes...")
         recipes = get_recipes()
 
         new_recipes = []

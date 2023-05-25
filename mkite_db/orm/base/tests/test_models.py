@@ -1,7 +1,7 @@
 from model_bakery import baker
 from datetime import timedelta
 from django.test import TestCase
-from mkite.orm.base.models import (
+from mkite_db.orm.base.models import (
     ChemNode,
     CalcNode,
     Formula,
