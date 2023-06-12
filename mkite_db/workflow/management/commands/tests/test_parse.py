@@ -19,7 +19,8 @@ JOB_RESULTS_FILE = resource_filename("mkite_db.tests.files.workflow", "jobresult
 
 
 def _prepare_folder():
-    path = os.path.join(ENGINE_CFG["root_path"], Status.PARSING.value)
+    parsing = f"queue:{Status.PARSING.value}"
+    path = os.path.join(ENGINE_CFG["root_path"], parsing)
     os.mkdir(path)
     shutil.copy(JOB_RESULTS_FILE, path)
     return path

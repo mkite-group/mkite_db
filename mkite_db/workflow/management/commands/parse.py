@@ -45,7 +45,7 @@ class Command(BaseCommand):
         nparsed = 0
         nerrors = 0
         while nparsed + nerrors < num_parse:
-            info = self.engine.get_info(queue=Status.PARSING.value, info_cls=JobResults)
+            key, info = self.engine.get_info(queue=Status.PARSING.value, info_cls=JobResults)
             if info is None:
                 break
 
@@ -53,6 +53,7 @@ class Command(BaseCommand):
 
             if out is not None:
                 nparsed += 1
+                self.engine.delete(key)
             else:
                 nerrors += 1
 
