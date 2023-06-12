@@ -4,7 +4,7 @@ from pkg_resources import resource_filename
 from ase import Atoms
 from ase.io import read
 from mkite_core.models import CrystalInfo, ConformerInfo, NodeResults
-from mkite_db.dbimport.ase import AseFileImporter
+from mkite_db.dbimport.asefile import AseFileImporter
 
 
 CIF_FILE = resource_filename("mkite_db.tests.files.dbimport", "silicon.cif")
