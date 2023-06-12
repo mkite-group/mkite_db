@@ -21,7 +21,7 @@ class MPImporter(DbImporter):
         self.key = api_key
 
     def get_rester(self):
-        from mp_api import MPRester
+        from mp_api.client import MPRester
 
         return MPRester(self.key)
 
