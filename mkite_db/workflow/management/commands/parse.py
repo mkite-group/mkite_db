@@ -45,7 +45,9 @@ class Command(BaseCommand):
         nparsed = 0
         nerrors = 0
         while nparsed + nerrors < num_parse:
-            key, info = self.engine.get_info(queue=Status.PARSING.value, info_cls=JobResults)
+            key, info = self.engine.get_info(
+                queue=Status.PARSING.value, info_cls=JobResults
+            )
             if info is None:
                 break
 
@@ -86,13 +88,18 @@ class Command(BaseCommand):
         duplicate jobs from being parsed into the system.
         """
         if "id" not in info.job and "uuid" not in info.job:
+            return False
+
+        if "uuid" in info.job:
+            job = Job.objects.filter(uuid=info.job["uuid"])
+
+        elif "id" in info.job:
+            job = Job.objects.filter(id=info.job["id"])
+
+        if not job.exists():
             return True
 
-        if "id" in info.job:
-            job = Job.objects.get(id=info.job["id"])
-
-        elif "uuid" in info.job:
-            job = Job.objects.get(uuid=info.job["uuid"])
+        job = job.first()
 
         return job.status != "D"
 
