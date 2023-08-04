@@ -22,17 +22,11 @@ class TestInfoFileImporter(ut.TestCase):
 
         return data
 
-    def test_read(self):
-        data = self.dbimp.read(INFO_FILE)
-        self.assertIsInstance(data, list)
-        self.assertEqual(len(data), 2)
-        self.assertIsInstance(data[0], dict)
-
     def test_query(self):
-        data = self.dbimp.query(INFO_FILE)
-        self.assertIsInstance(data, list)
-        self.assertEqual(len(data), 2)
-        self.assertIsInstance(data[0], dict)
+        data = self.load()
+        item = data[0]
+        q = self.dbimp.query(item)
+        self.assertEqual(item, q)
 
     def test_convert_item(self):
         data = self.load()
