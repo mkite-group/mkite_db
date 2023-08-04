@@ -78,7 +78,7 @@ class Command(BaseCommand):
         if kwargs.get("file", None) is not None:
             filename = kwargs["file"]
             if filename.endswith(".yaml") or filename.endswith(".json"):
-                return load_config(filename, expand=False)
+                return load_config(filename)
 
             return {"filename": kwargs["file"]}
 
