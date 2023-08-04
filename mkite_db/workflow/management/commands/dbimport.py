@@ -59,11 +59,19 @@ class Command(BaseCommand):
                 the command will ignore the JSON string passed with the -q \
                 option. The file can be a yaml or json file",
         )
+        argparser.add_argument(
+            "-j",
+            "--json_as_file",
+            action="store_true",
+            help="If true, treats the JSON file as a file to be passed to \
+                the importer instead of using its commands as queries.",
+        )
         return argparser
 
     def handle(self, importer, *args, **kwargs):
         self.project = kwargs["project"]
         self.experiment = kwargs["experiment"]
+        self.json_as_file = kwargs.get("json_as_file", False)
 
         importer_cls = DB_IMPORTERS[importer]
         self.importer = importer_cls.from_env(
@@ -77,8 +85,10 @@ class Command(BaseCommand):
     def get_query_args(self, **kwargs):
         if kwargs.get("file", None) is not None:
             filename = kwargs["file"]
-            if filename.endswith(".yaml") or filename.endswith(".json"):
-                return load_config(filename)
+
+            if not self.json_as_file:
+                if filename.endswith(".yaml") or filename.endswith(".json"):
+                    return load_config(filename)
 
             return {"filename": kwargs["file"]}
 
