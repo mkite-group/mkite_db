@@ -51,12 +51,13 @@ class Command(BaseCommand):
         data = {
             "id": "id",
             "status": "status",
+            "project": "experiment__project__name",
             "experiment": "experiment__name",
         }
 
         results = pd.DataFrame(jobs.values_list(*data.values()), columns=data.keys())
 
-        table = results.groupby(["experiment", "status"]).count()
+        table = results.groupby(["project", "experiment", "status"]).count()
         table = (
             table.reset_index()
             .pivot(index="experiment", columns="status", values="id")
