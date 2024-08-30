@@ -1,5 +1,7 @@
 {
     "job": {
+        "id": 1,
+        "uuid": "9eb7301c-2e4d-4804-8a61-de86020be9cd",
         "experiment": {
             "name": "test_relax",
             "description": "test",

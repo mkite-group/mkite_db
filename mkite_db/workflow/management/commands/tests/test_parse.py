@@ -10,6 +10,7 @@ from mkite_core.models import JobResults, Status
 from mkite_core.external import load_config
 from mkite_core.tests.tempdirs import run_in_tempdir
 from mkite_db.workflow.management.commands.parse import Command
+from mkite_engines.local import LOCAL_QUEUE_PREFIX
 
 
 ENGINE = resource_filename("mkite_db.tests.files", "engine.yaml")
@@ -18,7 +19,7 @@ JOB_RESULTS_FILE = resource_filename("mkite_db.tests.files.workflow", "jobresult
 
 
 def _prepare_folder():
-    parsing = f"queue:{Status.PARSING.value}"
+    parsing = f"{LOCAL_QUEUE_PREFIX}{Status.PARSING.value}"
     path = os.path.join(ENGINE_CFG["root_path"], parsing)
     os.mkdir(path)
     shutil.copy(JOB_RESULTS_FILE, path)
@@ -44,7 +45,7 @@ class TestParserCommand(TestCase):
     def test_is_valid_parse(self):
         cmd = self.get_command()
         info = self.get_info()
-
+        
         self.assertTrue(cmd.is_valid_parse(info))
 
     def test_parse_result(self):
