@@ -22,7 +22,7 @@ dependencies = [
     "model_bakery",
     "msgspec >= 0.14.1",
     "click",
-    "pydantic",
+    "pydantic>2",
     "ase",
     "pymatgen",
     "mp_api",
