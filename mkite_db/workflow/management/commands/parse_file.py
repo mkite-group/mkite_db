@@ -53,13 +53,16 @@ class Command(BaseCommand):
         duplicate jobs from being parsed into the system.
         """
         if "id" not in info.job and "uuid" not in info.job:
+            return False
+
+        if "uuid" in info.job:
+            job = Job.objects.filter(uuid=info.job["uuid"])
+
+        elif "id" in info.job:
+            job = Job.objects.filter(id=info.job["id"])
+
+        if not job.exists():
             return True
-
-        if "id" in info.job:
-            job = Job.objects.get(id=info.job["id"])
-
-        elif "uuid" in info.job:
-            job = Job.objects.get(uuid=info.job["uuid"])
 
         return job.status != "D"
 
