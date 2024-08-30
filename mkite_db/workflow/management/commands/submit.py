@@ -3,7 +3,8 @@ from django.db import models
 from django.core.exceptions import ObjectDoesNotExist
 from django.core.management.base import BaseCommand, CommandError
 
-from mkite_engines import Status, EngineRoles, instantiate_from_path
+from mkite_core.models import Status
+from mkite_engines import EngineRoles, instantiate_from_path
 from mkite_db.orm.jobs.models import Job, JobStatus, JobRecipe, Experiment, Project
 
 

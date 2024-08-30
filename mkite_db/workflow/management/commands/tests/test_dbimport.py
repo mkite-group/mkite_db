@@ -51,6 +51,7 @@ class CommandSimpleTests(SimpleTestCase, QueryMixin):
         self.assertTrue("MPImporter" in DB_IMPORTERS)
 
     def test_query_args(self):
+        self.cmd.json_as_file = False
         kwargs = {
             **self.get_kwargs(),
             "query": self.get_query_string(),

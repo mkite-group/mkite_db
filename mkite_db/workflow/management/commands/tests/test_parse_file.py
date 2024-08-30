@@ -6,10 +6,9 @@ from django.core.management import call_command
 from pkg_resources import resource_filename
 
 from mkite_db.orm.jobs.models import Job
-from mkite_core.models import JobResults
+from mkite_core.models import JobResults, Status
 from mkite_core.external import load_config
 from mkite_core.tests.tempdirs import run_in_tempdir
-from mkite_engines import Status
 from mkite_db.workflow.management.commands.parse import Command
 
 
