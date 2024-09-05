@@ -4,9 +4,9 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "mkite_db"
-version = "0.1.0"
+version = "24.09.05"
 description = "mkite: distributed computing platform for high-throughput materials simulations"
-authors = [{name = "Daniel Schwalbe-Koda", email = "dskoda@llnl.gov"}]
+authors = [{name = "Daniel Schwalbe-Koda", email = "dskoda@ucla.edu"}]
 readme = "README.md"
 requires-python = ">=3.8"
 keywords = ["workflow", "materials-science"]
@@ -22,7 +22,7 @@ dependencies = [
     "model_bakery",
     "msgspec >= 0.14.1",
     "click",
-    "pydantic>2",
+    "pydantic>=2.0",
     "ase",
     "pymatgen",
     "mp_api",
