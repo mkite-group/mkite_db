@@ -6,8 +6,8 @@ from mkite_db.orm.base.models import ChemNode
 from mkite_db.orm.base.serializers import ChemNodeSerializer
 from mkite_db.orm.jobs.models import Job
 from mkite_db.orm.jobs.serializers import JobSerializer
-from mkite_db.orm.calcs.models import Feature, EnergyForces
-from mkite_db.orm.calcs.serializers import EnergyForcesSerializer, FeatureSerializer
+from mkite_db.orm.calcs.models import Feature, EnergyForces, CalcType, GenericCalc
+from mkite_db.orm.calcs.serializers import EnergyForcesSerializer, FeatureSerializer, CalcTypeSerializer, GenericCalcSerializer
 
 
 class TestFeatureSerializer(TestCase):
@@ -85,5 +85,32 @@ class TestEnergyForcesSerializer(TestCase):
             "@class": "EnergyForces",
         }
         serial = EnergyForcesSerializer(node)
+
+        self.assertEqual(serial.data, expected)
+
+
+class TestCalcTypeSerializer(TestCase):
+    def test_deserialize(self):
+        data = {
+            "@module": "mkite_db.orm.calcs.models",
+            "@class": "CalcType",
+            "name": "test_ctype",
+        }
+        serial = CalcTypeSerializer(data=data)
+        self.assertTrue(serial.is_valid())
+
+        new = serial.save()
+        self.assertEqual(new.name, data["name"])
+
+    def test_serialize(self):
+        node = baker.make(CalcType)
+        expected = {
+            "id": node.id,
+            "uuid": str(node.uuid),
+            "name": node.name,
+            "@module": "mkite_db.orm.calcs.models",
+            "@class": "CalcType",
+        }
+        serial = CalcTypeSerializer(node)
 
         self.assertEqual(serial.data, expected)
