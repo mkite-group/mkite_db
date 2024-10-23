@@ -6,6 +6,8 @@ from mkite_db.orm.base.serializers import (
 from mkite_db.orm.calcs.serializers import (
     EnergyForcesSerializer,
     FeatureSerializer,
+    CalcTypeSerializer,
+    GenericCalcSerializer,
 )
 from mkite_db.orm.structs.serializers import CrystalSerializer
 from mkite_db.orm.mols.serializers import (
@@ -28,6 +30,8 @@ SERIALIZERS = {
     "CalcNode": CalcNodeSerializer,
     "EnergyForces": EnergyForcesSerializer,
     "Feature": FeatureSerializer,
+    "CalcType": CalcTypeSerializer,
+    "GenericCalc": GenericCalcSerializer,
     "Molecule": MoleculeSerializer,
     "Conformer": ConformerSerializer,
     "Crystal": CrystalSerializer,

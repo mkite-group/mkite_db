@@ -11,6 +11,8 @@ from .jobs.models import (
 from .calcs.models import (
     EnergyForces,
     Feature,
+    CalcType,
+    GenericCalc,
 )
 from .mols.models import (
     Molecule,
