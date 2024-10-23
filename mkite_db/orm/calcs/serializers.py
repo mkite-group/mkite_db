@@ -56,5 +56,6 @@ class GenericCalcSerializer(CalcNodeSerializer):
             "uuid",
             "parentjob",
             "chemnode",
+            "calctype",
             "data",
         )

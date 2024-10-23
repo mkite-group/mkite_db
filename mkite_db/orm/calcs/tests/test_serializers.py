@@ -114,3 +114,44 @@ class TestCalcTypeSerializer(TestCase):
         serial = CalcTypeSerializer(node)
 
         self.assertEqual(serial.data, expected)
+
+
+class TestGenericCalcSerializer(TestCase):
+    def test_deserialize(self):
+        ctype = baker.make(CalcType)
+        chem = baker.make(ChemNode)
+        data = {
+            "@module": "mkite_db.orm.calcs.models",
+            "@class": "GenericCalc",
+            "parentjob": {"id": chem.parentjob.id},
+            "chemnode": {"id": chem.id},
+            "calctype": {"id": ctype.id, "name": ctype.name},
+            "data": {"key": "value"}
+        }
+        serial = GenericCalcSerializer(data=data)
+        self.assertTrue(serial.is_valid())
+
+        new = serial.save()
+        self.assertEqual(new.data, data["data"])
+        self.assertEqual(new.calctype.name, ctype.name)
+        self.assertEqual(new.chemnode.uuid, chem.uuid)
+        self.assertEqual(new.parentjob.uuid, chem.parentjob.uuid)
+
+    def test_serialize(self):
+        node = baker.make(GenericCalc)
+        node.data["test"] = "value"
+
+        expected = {
+            "id": node.id,
+            "uuid": str(node.uuid),
+            "data": node.data,
+            "@module": "mkite_db.orm.calcs.models",
+            "@class": "GenericCalc",
+        }
+        serial = GenericCalcSerializer(node)
+        data = serial.data
+
+        for k, v in expected.items():
+            self.assertEqual(v, data[k])
+
+        self.assertEqual(data["calctype"]["uuid"], str(node.calctype.uuid))
