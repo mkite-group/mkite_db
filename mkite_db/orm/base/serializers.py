@@ -8,7 +8,11 @@ from .models import Formula, ChemNode, CalcNode
 class FormulaSerializer(BaseSerializer):
     class Meta:
         model = Formula
-        fields = "__all__"
+        fields = (
+            "id",
+            "name",
+            "charge",
+        )
 
 
 class ChemNodeSerializer(BaseSerializer):
