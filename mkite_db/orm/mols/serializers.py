@@ -1,16 +1,19 @@
 from django.db import transaction
-from rest_framework import serializers
-
-from taggit.serializers import TagListSerializerField, TaggitSerializer
-from mkite_db.orm.serializers import BaseSerializer
 from mkite_db.orm.base.models import Formula
-from mkite_db.orm.base.serializers import FormulaSerializer, ChemNodeSerializer
+from mkite_db.orm.base.serializers import ChemNodeSerializer, FormulaSerializer
+from mkite_db.orm.serializers import BaseSerializer
+from rest_framework import serializers
+from taggit.serializers import TaggitSerializer, TagListSerializerField
 
-from .models import Molecule, Conformer
+from .models import Conformer, Molecule
 
 
 class MoleculeSerializer(TaggitSerializer, ChemNodeSerializer):
-    formula = FormulaSerializer(nested_field=True, required=False)
+    # If formula is a nested field, then one needs to pass the full
+    # dictionary for the formula. However, this is not a good idea,
+    # as the formula is generated automatically from the SMILES.
+    # Therefore, we comment it out for now.
+    # formula = FormulaSerializer(nested_field=False, required=False)
     tags = TagListSerializerField(required=False)
 
     class Meta:
