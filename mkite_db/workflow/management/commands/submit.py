@@ -1,11 +1,11 @@
 import os
-from django.db import models
+
 from django.core.exceptions import ObjectDoesNotExist
 from django.core.management.base import BaseCommand, CommandError
-
+from django.db import models
 from mkite_core.models import Status
+from mkite_db.orm.jobs.models import Experiment, Job, JobRecipe, JobStatus, Project
 from mkite_engines import EngineRoles, instantiate_from_path
-from mkite_db.orm.jobs.models import Job, JobStatus, JobRecipe, Experiment, Project
 
 
 class Command(BaseCommand):
@@ -43,16 +43,27 @@ class Command(BaseCommand):
             help="Name of the experiment of the jobs to be submittted",
         )
         argparser.add_argument(
+            "-n",
+            "--num_jobs",
+            type=int,
+            default=None,
+            help="If provided, caps the maximum number of jobs to be submitted",
+        )
+        argparser.add_argument(
             "--dry_run",
             action="store_true",
             help="If set, does not submit anything",
         )
         return argparser
 
-    def handle(self, engine_config, *args, dry_run=False, **kwargs):
+    def handle(self, engine_config, *args, dry_run=False, num_jobs=None, **kwargs):
         self.project = kwargs["project"]
         self.experiment = kwargs["experiment"]
         self.recipe = kwargs["recipe"]
+
+        # if not provided, submit at most 1M jobs at once
+        if num_jobs is None:
+            num_jobs = 1000000
 
         self.pub = instantiate_from_path(engine_config, role=EngineRoles.producer)
 
@@ -67,8 +78,13 @@ class Command(BaseCommand):
             self.log("success", f"(DRY_RUN) would have submitted {num_jobs} jobs.")
             return
 
+        submitted = 0
         for job in jobs:
+            if submitted >= num_jobs:
+                break
+
             self.submit_job(job)
+            submitted += 1
 
         self.log("success", f"Submitted {num_jobs} jobs.")
 
