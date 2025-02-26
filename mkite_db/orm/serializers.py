@@ -50,6 +50,9 @@ class BaseSerializer(serializers.ModelSerializer):
     def get_instance_from_data(self, data: dict):
         model = self.Meta.model
 
+        if data is None:
+            return None, {}
+
         id_data = {k: v for k, v in data.items() if k in self.id_fields}
         if not id_data:
             return None, data
@@ -137,6 +140,9 @@ class BaseSerializer(serializers.ModelSerializer):
     def deserialize_nested(self, field, field_data: dict):
         serializer = field.__class__(data=field_data)
         if not serializer.is_valid():
+            if not serializer.data:
+                return None
+
             raise serializers.ValidationError(
                 f"Data for {field.field_name} is not valid"
             )

@@ -16,7 +16,7 @@ class FormulaSerializer(BaseSerializer):
 
     def to_internal_value(self, data):
         if data is None:
-            modified = None
+            modified = {}
 
         elif type(data) == int:
             modified = {"id": data}
@@ -25,7 +25,7 @@ class FormulaSerializer(BaseSerializer):
             modified = data
 
         else:
-            modified = None
+            modified = {}
 
         return super().to_internal_value(modified)
 

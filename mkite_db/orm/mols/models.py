@@ -70,8 +70,9 @@ class Conformer(ChemNode):
 
     def __repr__(self):
         ikey = "None" if self.mol is None else self.mol.inchikey
+        formula = "None" if self.formula is None else self.formula.name
         return (
-            f"<{self.__class__.__name__}: {self.formula.name}, Mol {ikey} ({self.id})>"
+            f"<{self.__class__.__name__}: {formula}, Mol {ikey} ({self.id})>"
         )
 
     def as_info(self):
