@@ -45,6 +45,7 @@ class Molecule(ChemNode):
 class Conformer(ChemNode):
     formula = models.ForeignKey(
         Formula,
+        null=True,
         on_delete=models.PROTECT,
         related_name="conformers",
     )

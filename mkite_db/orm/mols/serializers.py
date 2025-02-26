@@ -13,13 +13,13 @@ class MoleculeSerializer(TaggitSerializer, ChemNodeSerializer):
     # dictionary for the formula. However, this is not a good idea,
     # as the formula is generated automatically from the SMILES.
     # Therefore, we comment it out for now.
-    # formula = FormulaSerializer(nested_field=False, required=False)
+    formula = FormulaSerializer(nested_field=True, required=False)
     tags = TagListSerializerField(required=False)
 
     class Meta:
         model = Molecule
         fields = "__all__"
-        read_only_fields = ("inchikey",)
+        read_only_fields = ("inchikey", "formula")
 
     @transaction.atomic
     def create(self, validated_data):
@@ -37,6 +37,11 @@ class MoleculeSerializer(TaggitSerializer, ChemNodeSerializer):
 
         return super().create(validated_data)
 
+    def to_internal_value(self, data):
+        # Remove the formula field if it is present in the input data
+        data.pop("formula", None)
+        return super().to_internal_value(data)
+
 
 class ConformerSerializer(ChemNodeSerializer):
     formula = FormulaSerializer(nested_field=True, required=False)
@@ -45,3 +50,11 @@ class ConformerSerializer(ChemNodeSerializer):
     class Meta:
         model = Conformer
         fields = "__all__"
+        read_only_fields = ("formula",)
+
+    def to_internal_value(self, data):
+        # Remove the formula field if it is present in the input data
+        if "mol" in data and "formula" in data.get("mol", {}):
+            data["formula"] = data["mol"]["formula"]
+
+        return super().to_internal_value(data)
