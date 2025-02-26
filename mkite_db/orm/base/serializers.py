@@ -14,6 +14,21 @@ class FormulaSerializer(BaseSerializer):
             "charge",
         )
 
+    def to_internal_value(self, data):
+        if data is None:
+            modified = None
+
+        elif type(data) == int:
+            modified = {"id": data}
+
+        elif type(data) == dict:
+            modified = data
+
+        else:
+            modified = None
+
+        return super().to_internal_value(modified)
+
 
 class ChemNodeSerializer(BaseSerializer):
     parentjob = JobSerializer(nested_field=True)

@@ -95,3 +95,4 @@ class TestConformerSerializer(TestCase):
         self.assertEqual(new.coords, data["coords"])
         self.assertEqual(new.formula.name, data["formula"]["name"])
         self.assertEqual(new.parentjob.uuid, job.uuid)
+
