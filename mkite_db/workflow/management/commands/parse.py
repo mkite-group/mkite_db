@@ -26,7 +26,7 @@ class Command(BaseCommand):
             "-n",
             "--num_parse",
             type=int,
-            default=1000,
+            default=10000,
             help="maximum number of jobs to parse at once",
         )
         return argparser

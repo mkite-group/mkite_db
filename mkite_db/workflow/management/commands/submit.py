@@ -46,8 +46,8 @@ class Command(BaseCommand):
             "-n",
             "--num_jobs",
             type=int,
-            default=None,
-            help="If provided, caps the maximum number of jobs to be submitted",
+            default=1000,
+            help="If provided, caps the maximum number of jobs to be submitted (default: 1000)",
         )
         argparser.add_argument(
             "--dry_run",
@@ -56,14 +56,10 @@ class Command(BaseCommand):
         )
         return argparser
 
-    def handle(self, engine_config, *args, dry_run=False, num_jobs=None, **kwargs):
+    def handle(self, engine_config, *args, dry_run=False, num_jobs=1000, **kwargs):
         self.project = kwargs["project"]
         self.experiment = kwargs["experiment"]
         self.recipe = kwargs["recipe"]
-
-        # if not provided, submit at most 1M jobs at once
-        if num_jobs is None:
-            num_jobs = 1000000
 
         self.pub = instantiate_from_path(engine_config, role=EngineRoles.producer)
 
