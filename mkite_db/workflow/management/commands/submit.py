@@ -46,7 +46,7 @@ class Command(BaseCommand):
             "-n",
             "--num_jobs",
             type=int,
-            default=1000,
+            default=10000,
             help="If provided, caps the maximum number of jobs to be submitted (default: 1000)",
         )
         argparser.add_argument(
@@ -56,7 +56,7 @@ class Command(BaseCommand):
         )
         return argparser
 
-    def handle(self, engine_config, *args, dry_run=False, num_jobs=1000, **kwargs):
+    def handle(self, engine_config, *args, dry_run=False, num_jobs=10000, **kwargs):
         self.project = kwargs["project"]
         self.experiment = kwargs["experiment"]
         self.recipe = kwargs["recipe"]
@@ -65,8 +65,7 @@ class Command(BaseCommand):
 
         jobs = self.get_jobs(**kwargs)
 
-        num_jobs = jobs.count()
-        if num_jobs == 0:
+        if jobs.count() == 0:
             self.log("error", "No jobs to submit. Exiting...")
             return
 
