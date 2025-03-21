@@ -108,12 +108,25 @@ class TestCommand(TestCase, QueryMixin):
         info = self.get_info()
         cmd.project = info.job["experiment"]["project"]["name"]
         cmd.experiment = info.job["experiment"]["name"]
+        cmd.tags = ["test", "test2"]
 
         out = cmd.save_jobresults(info)
 
         self.assertTrue(out is not None)
         self.assertIsInstance(out.job, Job)
         self.assertTrue(hasattr(out.job, "id"))
+
+    def test_tags(self):
+        cmd = self.get_command()
+        info = self.get_info()
+        cmd.project = info.job["experiment"]["project"]["name"]
+        cmd.experiment = info.job["experiment"]["name"]
+        cmd.tags = ["test", "test2"]
+
+        out = cmd.save_jobresults(info)
+        job = out.job
+
+        self.assertTrue(job.tags.count() == 2)
 
     @ut.skipIf("MP_API_KEY" not in os.environ, "MP_API_KEY is not in environment")
     @patch.dict(

@@ -60,6 +60,14 @@ class Command(BaseCommand):
                 option. The file can be a yaml or json file",
         )
         argparser.add_argument(
+            "-t",
+            "--tags",
+            type=str,
+            nargs="+",
+            default=None,
+            help="If present, add these tags to the jobs"
+        )
+        argparser.add_argument(
             "-j",
             "--json_as_file",
             action="store_true",
@@ -72,6 +80,7 @@ class Command(BaseCommand):
         self.project = kwargs["project"]
         self.experiment = kwargs["experiment"]
         self.json_as_file = kwargs.get("json_as_file", False)
+        self.tags = kwargs.get("tags", [])
 
         importer_cls = DB_IMPORTERS[importer]
         self.importer = importer_cls.from_env(
@@ -149,7 +158,11 @@ class Command(BaseCommand):
         if not self.is_valid_parse(info):
             raise CommandError("Parsing the results of the query is not valid")
 
-        return JobParser(info).parse()
+        out = JobParser(info).parse()
+        if self.tags:
+            out.job.tags.add(*self.tags)
+
+        return out
 
     def is_valid_parse(self, info: JobResults) -> bool:
         """Verifies if it is valid to parse the JobResults given by info.
