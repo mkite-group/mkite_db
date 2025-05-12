@@ -70,7 +70,8 @@ class Command(BaseCommand):
             return
 
         if dry_run:
-            self.log("success", f"(DRY_RUN) would have submitted {num_jobs} jobs.")
+            to_submit = min(num_jobs, jobs.count())
+            self.log("success", f"(DRY_RUN) would have submitted {to_submit} jobs.")
             return
 
         submitted = 0
@@ -81,7 +82,8 @@ class Command(BaseCommand):
             self.submit_job(job)
             submitted += 1
 
-        self.log("success", f"Submitted {num_jobs} jobs.")
+        submitted = min(submitted, num_jobs)
+        self.log("success", f"Submitted {submitted} jobs.")
 
     def get_jobs(self, **kwargs) -> models.QuerySet:
         self.log("notice", "Submitting jobs with the following constraints:")
