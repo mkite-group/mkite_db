@@ -1,12 +1,26 @@
 import os
+import sys
 from typing import Iterable
 from django.core.management.base import BaseCommand, CommandError
+from django.db import connections, OperationalError
 
 from mkite_core.models import JobResults, Status
 from mkite_db.workflow.parse import JobParser
 from mkite_engines import EngineRoles, instantiate_from_path
 
 from mkite_db.orm.jobs.models import Job
+
+
+def check_database_connection(alias='default'):
+    """
+    Checks whether the database connection is active.
+    Raises OperationalError if the connection fails.
+    """
+    try:
+        connection = connections[alias]
+        connection.ensure_connection()
+    except OperationalError as e:
+        raise OperationalError(f"Database connection failed: {e}")
 
 
 class Command(BaseCommand):
@@ -32,6 +46,12 @@ class Command(BaseCommand):
         return argparser
 
     def handle(self, engine_config, *args, num_parse=1000, **kwargs):
+        try:
+            check_database_connection()
+        except OperationalError as e:
+            print(e)
+            sys.exit()
+
         self.engine = self.get_engine(engine_config)
         self.log("notice", f"Parsing from engine: {engine_config}")
         self.parse_all(num_parse)
