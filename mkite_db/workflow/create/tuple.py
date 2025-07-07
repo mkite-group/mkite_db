@@ -25,14 +25,12 @@ class TupleJobCreator(BaseJobCreator):
 
     def get_inputs_with_jobs(self) -> List[Tuple[int]]:
         jobs = self.get_existing_jobs()
-        job_inputs = jobs.values_list("id", "inputs")
 
-        tuples = []
-        for key, grp in itertools.groupby(job_inputs, key=lambda x: x[0]):
-            inp_ids = tuple(sorted([x[1] for x in grp]))
-            tuples.append(inp_ids)
+        job_inputs = {}
+        for jid, inp_id in jobs.values_list("id", "inputs__id"):
+            job_inputs[jid] = job_inputs.get(jid, []) + [inp_id]
 
-        return tuples
+        return [tuple(sorted(v)) for v in job_inputs.values()]
 
     def get_input_queries(self) -> List[List[int]]:
         all_nodes = []
