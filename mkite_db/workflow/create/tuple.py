@@ -55,8 +55,9 @@ class TupleJobCreator(BaseJobCreator):
         all_inputs = [
             ChemNode.objects.filter(id__in=tup)
             for tup in combinations
-            if tuple(sorted(tup)) not in exclude
+            if tuple(sorted(tup)) not in exclude and len(set(tup)) == len(tup)
         ]
+        all_inputs = list(set(all_inputs))
 
         return all_inputs
 
