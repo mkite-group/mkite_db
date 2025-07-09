@@ -49,13 +49,17 @@ class TupleJobCreator(BaseJobCreator):
         exclude = [] if exclude is None else exclude
 
         combinations = itertools.product(*query_sets)
+        combinations = set([
+            tuple(sorted(tup)) for tup in combinations
+            if len(set(tup)) == len(tup)
+        ])
 
+        # makes inputs and removes duplicates
         all_inputs = [
             ChemNode.objects.filter(id__in=tup)
             for tup in combinations
-            if tuple(sorted(tup)) not in exclude and len(set(tup)) == len(tup)
+            if tup not in exclude
         ]
-        all_inputs = list(set(all_inputs))
 
         return all_inputs
 
