@@ -4,14 +4,14 @@ from typing import Iterable
 from django.core.management.base import BaseCommand, CommandError
 from django.db import connections, OperationalError
 
-from mkite_core.models import JobResults, Status
+from mkite_core.models import JobResults, Status, JobInfo
 from mkite_db.workflow.parse import JobParser
 from mkite_engines import EngineRoles, instantiate_from_path
 
-from mkite_db.orm.jobs.models import Job
+from mkite_db.orm.jobs.models import Job, JobStatus
 
 
-def check_database_connection(alias='default'):
+def check_database_connection(alias="default"):
     """
     Checks whether the database connection is active.
     Raises OperationalError if the connection fails.
@@ -43,9 +43,15 @@ class Command(BaseCommand):
             default=10000,
             help="maximum number of jobs to parse at once",
         )
+        argparser.add_argument(
+            "-e",
+            "--error",
+            action="store_true",
+            help="If set, parses the error queue",
+        )
         return argparser
 
-    def handle(self, engine_config, *args, num_parse=1000, **kwargs):
+    def handle(self, engine_config, *args, num_parse=1000, error=False, **kwargs):
         try:
             check_database_connection()
         except OperationalError as e:
@@ -54,7 +60,11 @@ class Command(BaseCommand):
 
         self.engine = self.get_engine(engine_config)
         self.log("notice", f"Parsing from engine: {engine_config}")
-        self.parse_all(num_parse)
+
+        if error:
+            self.parse_error(num_parse)
+        else:
+            self.parse_all(num_parse)
 
     def get_engine(self, engine_config):
         engine = instantiate_from_path(engine_config, role=EngineRoles.consumer)
@@ -102,6 +112,27 @@ class Command(BaseCommand):
             self.log("error", f"Error processing {jobstr}: {str(e)}")
 
             return None
+
+    def parse_error(self, num_parse: int):
+        nerrors = 0
+        while nerrors < num_parse:
+            key, msg = self.engine.get(queue=Status.ERROR.value)
+            if key is None:
+                break
+
+            try:
+                job = Job.objects.get(uuid=key)
+                job.status = JobStatus.ERROR
+                job.save()
+                self.engine.delete(key)
+                nerrors += 1
+
+            except Exception as e:
+                self.log("error", f"Error processing {key}: {str(e)}")
+
+        self.log("success", f"Number of error jobs: {nerrors}")
+
+        return nerrors
 
     def is_valid_parse(self, info: JobResults):
         """Verifies if it is valid to parse the JobResults given by info. This prevents
