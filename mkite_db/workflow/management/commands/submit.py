@@ -1,4 +1,5 @@
 import os
+import tqdm
 
 from django.core.exceptions import ObjectDoesNotExist
 from django.core.management.base import BaseCommand, CommandError
@@ -75,7 +76,7 @@ class Command(BaseCommand):
             return
 
         submitted = 0
-        for job in jobs:
+        for job in tqdm.tqdm(jobs):
             if submitted >= num_jobs:
                 break
 
@@ -149,4 +150,4 @@ class Command(BaseCommand):
         self.pub.push_info(recipe, info)
         job.status = JobStatus.RUNNING
         job.save()
-        self.log("success", f"Submitted Job ID {job.id}.")
+        #self.log("success", f"Submitted Job ID {job.id}.")
