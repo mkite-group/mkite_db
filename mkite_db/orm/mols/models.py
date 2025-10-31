@@ -13,6 +13,7 @@ class Molecule(ChemNode):
         Formula,
         on_delete=models.PROTECT,
         related_name="molecules",
+        null=True,
     )
 
     inchikey = models.CharField(

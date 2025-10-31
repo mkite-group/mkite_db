@@ -27,11 +27,16 @@ class MoleculeSerializer(TaggitSerializer, ChemNodeSerializer):
 
         iface = RdkitInterface.from_smiles(validated_data["smiles"])
 
+        attrs = validated_data.get("attributes", {})
+        attrs.update({
+            "formula": iface.formula,
+            "charge": iface.charge,
+        })
+
         validated_data.update(
             {
                 "inchikey": iface.inchikey,
                 "smiles": iface.smiles,
-                "formula": {"name": iface.formula, "charge": iface.charge},
             }
         )
 

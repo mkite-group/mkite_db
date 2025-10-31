@@ -245,6 +245,7 @@ class Crystal(ChemNode):
         Formula,
         on_delete=models.PROTECT,
         related_name="crystals",
+        null=True,
     )
 
     spacegroup = models.PositiveSmallIntegerField(
