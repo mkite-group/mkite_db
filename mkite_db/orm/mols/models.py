@@ -79,3 +79,8 @@ class Conformer(ChemNode):
         from mkite_core.models import ConformerInfo
 
         return ConformerInfo.from_conformer(self)
+
+    def as_dict(self):
+        data = super().as_dict()
+        data["mol"] = self.mol.as_dict()
+        return data
