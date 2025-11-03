@@ -1,5 +1,4 @@
 from mkite_db.orm.base.serializers import (
-    FormulaSerializer,
     ChemNodeSerializer,
     CalcNodeSerializer,
 )
@@ -25,7 +24,6 @@ from mkite_db.orm.jobs.serializers import (
 
 
 SERIALIZERS = {
-    "Formula": FormulaSerializer,
     "ChemNode": ChemNodeSerializer,
     "CalcNode": CalcNodeSerializer,
     "EnergyForces": EnergyForcesSerializer,

@@ -27,6 +27,12 @@ class Molecule(ChemNode):
 
     tags = TaggableManager()
 
+    @property
+    def formula(self):
+        if "formula" in self.attributes:
+            return self.attributes["formula"]
+        return None
+
     def __repr__(self):
         return f"<{self.__class__.__name__}: {self.inchikey} ({self.id})>"
 
@@ -63,7 +69,7 @@ class Conformer(ChemNode):
 
     def __repr__(self):
         ikey = "None" if self.mol is None else self.mol.inchikey
-        formula = "None" if self.formula is None else self.formula
+        formula = str(self.formula)
         return (
             f"<{self.__class__.__name__}: {formula}, Mol {ikey} ({self.id})>"
         )

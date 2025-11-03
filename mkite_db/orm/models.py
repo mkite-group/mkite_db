@@ -1,4 +1,4 @@
-from .base.models import ChemNode, CalcNode, Formula, Elements
+from .base.models import ChemNode, CalcNode, Elements
 from .jobs.models import (
     Project,
     Experiment,
