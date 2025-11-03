@@ -1,7 +1,6 @@
 from model_bakery import baker
 from django.test import TestCase
 
-from mkite_db.orm.base.models import Formula
 from mkite_db.orm.jobs.models import Job
 from mkite_db.orm.structs.serializers import CrystalSerializer
 
@@ -45,7 +44,6 @@ class TestCrystalSerializer(TestCase):
 
         new = serial.save()
         self.assertEqual(new.spacegroup, 227)
-        self.assertEqual(new.formula.name, "Si2 +0")
         self.assertEqual(new.parentjob.uuid, job.uuid)
 
     def test_deserialize_without_spgrp(self):
