@@ -112,16 +112,6 @@ class CalcNode(Node):
         return data
 
 
-class Formula(models.Model):
-    name = models.CharField(max_length=128, unique=True)
-    charge = models.SmallIntegerField(default=0)
-
-    def as_info(self):
-        from mkite_core.models import FormulaInfo
-
-        return FormulaInfo(self.name, self.charge)
-
-
 class Elements(models.TextChoices):
     H = "H"
     He = "He"
