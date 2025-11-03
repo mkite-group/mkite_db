@@ -5,15 +5,6 @@ from mkite_db.orm.repr import _named_repr
 from mkite_db.orm.base.models import CalcNode, DbEntry
 
 
-class EnergyForces(CalcNode):
-    energy = models.FloatField(null=True)
-    forces = ArrayField(ArrayField(models.FloatField(), size=3), null=True)
-
-
-class Feature(CalcNode):
-    value = ArrayField(models.FloatField())
-
-
 class CalcType(DbEntry):
     name = models.CharField(max_length=128, unique=True)
 

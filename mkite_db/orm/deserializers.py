@@ -3,8 +3,6 @@ from mkite_db.orm.base.serializers import (
     CalcNodeSerializer,
 )
 from mkite_db.orm.calcs.serializers import (
-    EnergyForcesSerializer,
-    FeatureSerializer,
     CalcTypeSerializer,
     GenericCalcSerializer,
 )
@@ -26,8 +24,6 @@ from mkite_db.orm.jobs.serializers import (
 SERIALIZERS = {
     "ChemNode": ChemNodeSerializer,
     "CalcNode": CalcNodeSerializer,
-    "EnergyForces": EnergyForcesSerializer,
-    "Feature": FeatureSerializer,
     "CalcType": CalcTypeSerializer,
     "GenericCalc": GenericCalcSerializer,
     "Molecule": MoleculeSerializer,

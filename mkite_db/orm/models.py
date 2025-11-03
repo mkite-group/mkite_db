@@ -9,8 +9,6 @@ from .jobs.models import (
     RunStats,
 )
 from .calcs.models import (
-    EnergyForces,
-    Feature,
     CalcType,
     GenericCalc,
 )

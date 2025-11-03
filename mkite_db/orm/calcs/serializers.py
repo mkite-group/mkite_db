@@ -4,32 +4,7 @@ from rest_framework import serializers
 from mkite_db.orm.serializers import BaseSerializer
 from mkite_db.orm.base.serializers import CalcNodeSerializer
 
-from .models import EnergyForces, Feature, CalcType, GenericCalc
-
-
-class EnergyForcesSerializer(CalcNodeSerializer):
-    class Meta:
-        model = EnergyForces
-        fields = (
-            "id",
-            "uuid",
-            "energy",
-            "forces",
-            "parentjob",
-            "chemnode",
-        )
-
-
-class FeatureSerializer(CalcNodeSerializer):
-    class Meta:
-        model = Feature
-        fields = (
-            "id",
-            "uuid",
-            "value",
-            "parentjob",
-            "chemnode",
-        )
+from .models import CalcType, GenericCalc
 
 
 class CalcTypeSerializer(BaseSerializer):
