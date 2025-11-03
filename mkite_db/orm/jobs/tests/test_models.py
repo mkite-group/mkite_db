@@ -120,6 +120,7 @@ class TestJobModels(TestCase):
             "ctime": job.ctime,
             "project": job.experiment.project.name,
             "experiment": job.experiment.name,
+            "inputs": [],
         }
         self.assertEqual(data, expected)
 

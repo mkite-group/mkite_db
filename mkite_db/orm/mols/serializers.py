@@ -13,7 +13,7 @@ class MoleculeSerializer(TaggitSerializer, ChemNodeSerializer):
     class Meta:
         model = Molecule
         fields = "__all__"
-        read_only_fields = ("inchikey")
+        read_only_fields = ("inchikey", )
 
     @transaction.atomic
     def create(self, validated_data):
