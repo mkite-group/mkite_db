@@ -3,7 +3,6 @@ from model_bakery import baker
 from django.test import TestCase
 from pkg_resources import resource_filename
 
-from mkite_db.orm.base.models import Formula
 from mkite_db.orm.jobs.models import Job
 from mkite_db.orm.mols.models import Molecule, Conformer
 from mkite_db.orm.mols.serializers import (
@@ -49,7 +48,6 @@ class TestMolSerializer(TestCase):
 
         newmol = serial.save()
         self.assertEqual(newmol.smiles, "Cn1c(=O)c2c(ncn2C)n(C)c1=O")
-        self.assertEqual(newmol.formula.name, "H10 C8 N4 O2 +0")
         self.assertEqual(newmol.parentjob.uuid, job.uuid)
         self.assertEqual(newmol.inchikey, "RYYVLZVUVIJVGH-UHFFFAOYSA-N")
 
@@ -82,7 +80,6 @@ class TestConformerSerializer(TestCase):
         cdict = self.get_conf_dict()
         data = {
             "parentjob": {"id": job.id},
-            "formula": cdict["formula"],
             "species": cdict["species"],
             "coords": cdict["coords"],
             "attributes": {},
@@ -93,6 +90,5 @@ class TestConformerSerializer(TestCase):
 
         new = serial.save()
         self.assertEqual(new.coords, data["coords"])
-        self.assertEqual(new.formula.name, data["formula"]["name"])
         self.assertEqual(new.parentjob.uuid, job.uuid)
 

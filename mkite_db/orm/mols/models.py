@@ -3,18 +3,11 @@ from django.contrib.postgres.fields import ArrayField
 
 from taggit.managers import TaggableManager
 from mkite_db.orm.repr import _named_repr
-from mkite_db.orm.base.models import DbEntry, ChemNode, Elements, Formula
+from mkite_db.orm.base.models import DbEntry, ChemNode, Elements
 
 
 class Molecule(ChemNode):
     """Class to hold the information of molecular graphs"""
-
-    formula = models.ForeignKey(
-        Formula,
-        on_delete=models.PROTECT,
-        related_name="molecules",
-        null=True,
-    )
 
     inchikey = models.CharField(
         max_length=27,
@@ -44,13 +37,6 @@ class Molecule(ChemNode):
 
 
 class Conformer(ChemNode):
-    formula = models.ForeignKey(
-        Formula,
-        null=True,
-        on_delete=models.PROTECT,
-        related_name="conformers",
-    )
-
     mol = models.ForeignKey(
         Molecule,
         null=True,
@@ -69,9 +55,15 @@ class Conformer(ChemNode):
     siteprops = models.JSONField(default=dict)
     attributes = models.JSONField(default=dict)
 
+    @property
+    def formula(self):
+        if "formula" in self.attributes:
+            return self.attributes["formula"]
+        return None
+
     def __repr__(self):
         ikey = "None" if self.mol is None else self.mol.inchikey
-        formula = "None" if self.formula is None else self.formula.name
+        formula = "None" if self.formula is None else self.formula
         return (
             f"<{self.__class__.__name__}: {formula}, Mol {ikey} ({self.id})>"
         )
