@@ -4,7 +4,6 @@ from django.test import TestCase
 from mkite_db.orm.base.models import (
     ChemNode,
     CalcNode,
-    Formula,
     Elements,
 )
 
@@ -19,7 +18,3 @@ class TestBase(TestCase):
         self.assertTrue(hasattr(node, "parentjob"))
         self.assertTrue(hasattr(node, "chemnode"))
         self.assertTrue(isinstance(node.chemnode, ChemNode))
-
-    def test_formula(self):
-        formula = baker.make(Formula)
-        self.assertTrue(hasattr(formula, "name"))

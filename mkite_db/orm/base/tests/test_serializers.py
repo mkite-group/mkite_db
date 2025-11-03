@@ -1,48 +1,13 @@
 from model_bakery import baker
 from django.test import TestCase
 
-from mkite_db.orm.base.models import Formula, ChemNode, CalcNode
+from mkite_db.orm.base.models import ChemNode, CalcNode
 from mkite_db.orm.jobs.models import Job
 from mkite_db.orm.jobs.serializers import JobSerializer
 from mkite_db.orm.base.serializers import (
-    FormulaSerializer,
     ChemNodeSerializer,
     CalcNodeSerializer,
 )
-
-
-class TestFormulaSerializer(TestCase):
-    @property
-    def dict(self):
-        return {
-            "name": "H20 C8 N1 +1",
-            "charge": 1,
-        }
-
-    def test_serialize(self):
-        f = baker.make(Formula, **self.dict)
-        serial = FormulaSerializer(f)
-        data = serial.data
-
-        self.assertTrue("id" in data)
-        expected = {
-            "@module": "mkite_db.orm.base.models",
-            "@class": "Formula",
-            "name": "H20 C8 N1 +1",
-            "charge": 1,
-        }
-        for k, v in expected.items():
-            self.assertEqual(data[k], v)
-
-    def test_deserialize(self):
-        serial = FormulaSerializer(data=self.dict)
-
-        self.assertTrue(serial.is_valid())
-
-        new = serial.save()
-
-        self.assertEqual(new.name, self.dict["name"])
-        self.assertEqual(new.charge, self.dict["charge"])
 
 
 class TestChemSerializer(TestCase):
