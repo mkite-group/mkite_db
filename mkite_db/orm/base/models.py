@@ -5,6 +5,7 @@ from itertools import chain
 from django.db import models, transaction
 from django.contrib.contenttypes.fields import GenericForeignKey
 from django.contrib.contenttypes.models import ContentType
+from mkite_db.orm.repr import _named_repr
 
 
 class DbEntry(models.Model):
@@ -82,6 +83,13 @@ class ChemNode(Node):
         return data
 
 
+class CalcType(DbEntry):
+    name = models.CharField(max_length=128, unique=True)
+
+    def __repr__(self):
+        return _named_repr(self)
+
+
 class CalcNode(Node):
     """Base class for every calculation in the database. This includes
     energies, forces, analysis, descriptors etc.
@@ -105,6 +113,16 @@ class CalcNode(Node):
         related_name="calcnodes",
         on_delete=models.CASCADE,
     )
+
+    calctype = models.ForeignKey(
+        CalcType,
+        null=True,
+        db_index=False,
+        related_name="calcstmp",
+        on_delete=models.PROTECT,
+    )
+
+    data = models.JSONField(default=dict)
 
     def as_dict(self):
         data = super().as_dict()
