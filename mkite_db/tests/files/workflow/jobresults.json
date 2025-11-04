@@ -71,21 +71,23 @@
             },
             "calcnodes": [
                 {
-                    "@module": "mkite_db.orm.calcs.models",
-                    "@class": "EnergyForces",
-                    "energy": -10.84136528,
-                    "forces": [
-                        [
-                            -0,
-                            -0,
-                            -0
-                        ],
-                        [
-                            0,
-                            0,
-                            0
+                    "@module": "mkite_db.orm.base.models",
+                    "@class": "CalcNode",
+                    "data": {
+                        "energy": -10.84136528,
+                        "forces": [
+                            [
+                                -0,
+                                -0,
+                                -0
+                            ],
+                            [
+                                0,
+                                0,
+                                0
+                            ]
                         ]
-                    ]
+                    }
                 }
             ]
         }
