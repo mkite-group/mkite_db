@@ -118,7 +118,7 @@ class CalcNode(Node):
         CalcType,
         null=True,
         db_index=False,
-        related_name="calcstmp",
+        related_name="calcs",
         on_delete=models.PROTECT,
     )
 
