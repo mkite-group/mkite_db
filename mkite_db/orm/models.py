@@ -1,4 +1,4 @@
-from .base.models import ChemNode, CalcNode, Elements
+from .base.models import ChemNode, CalcNode, Elements, CalcType
 from .jobs.models import (
     Project,
     Experiment,
@@ -7,10 +7,6 @@ from .jobs.models import (
     JobRecipe,
     JobPackage,
     RunStats,
-)
-from .calcs.models import (
-    CalcType,
-    GenericCalc,
 )
 from .mols.models import (
     Molecule,

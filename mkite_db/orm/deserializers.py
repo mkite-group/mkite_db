@@ -1,10 +1,7 @@
 from mkite_db.orm.base.serializers import (
     ChemNodeSerializer,
     CalcNodeSerializer,
-)
-from mkite_db.orm.calcs.serializers import (
     CalcTypeSerializer,
-    GenericCalcSerializer,
 )
 from mkite_db.orm.structs.serializers import CrystalSerializer
 from mkite_db.orm.mols.serializers import (
@@ -25,7 +22,6 @@ SERIALIZERS = {
     "ChemNode": ChemNodeSerializer,
     "CalcNode": CalcNodeSerializer,
     "CalcType": CalcTypeSerializer,
-    "GenericCalc": GenericCalcSerializer,
     "Molecule": MoleculeSerializer,
     "Conformer": ConformerSerializer,
     "Crystal": CrystalSerializer,

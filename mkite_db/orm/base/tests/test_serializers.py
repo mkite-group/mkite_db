@@ -14,7 +14,7 @@ from mkite_db.orm.base.serializers import (
 class TestCalcTypeSerializer(TestCase):
     def test_deserialize(self):
         data = {
-            "@module": "mkite_db.orm.calcs.models",
+            "@module": "mkite_db.orm.base.models",
             "@class": "CalcType",
             "name": "test_ctype",
         }
@@ -30,7 +30,7 @@ class TestCalcTypeSerializer(TestCase):
             "id": node.id,
             "uuid": str(node.uuid),
             "name": node.name,
-            "@module": "mkite_db.orm.calcs.models",
+            "@module": "mkite_db.orm.base.models",
             "@class": "CalcType",
         }
         serial = CalcTypeSerializer(node)
@@ -72,8 +72,8 @@ class TestCalcSerializer(TestCase):
         ctype = baker.make(CalcType)
         chem = baker.make(ChemNode)
         data = {
-            "@module": "mkite_db.orm.calcs.models",
-            "@class": "GenericCalc",
+            "@module": "mkite_db.orm.base.models",
+            "@class": "CalcNode",
             "parentjob": {"id": chem.parentjob.id},
             "chemnode": {"id": chem.id},
             "calctype": {"id": ctype.id, "name": ctype.name},
