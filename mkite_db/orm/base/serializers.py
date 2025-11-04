@@ -38,7 +38,7 @@ class CalcTypeSerializer(BaseSerializer):
 class CalcNodeSerializer(BaseSerializer):
     parentjob = JobSerializer(nested_field=True)
     chemnode = ChemNodeSerializer(nested_field=True)
-    calctype = CalcTypeSerializer(nested_field=True)
+    calctype = CalcTypeSerializer(nested_field=True, required=False)
 
     class Meta:
         model = CalcNode
@@ -51,4 +51,3 @@ class CalcNodeSerializer(BaseSerializer):
             "data",
         )
         read_only_fields = ("ctime", "mtime")
-

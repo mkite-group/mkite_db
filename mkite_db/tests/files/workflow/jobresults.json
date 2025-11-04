@@ -73,6 +73,9 @@
                 {
                     "@module": "mkite_db.orm.base.models",
                     "@class": "CalcNode",
+                    "calctype": {
+                        "name": "energy_forces"
+                    },
                     "data": {
                         "energy": -10.84136528,
                         "forces": [
