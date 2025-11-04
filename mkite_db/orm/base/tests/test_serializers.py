@@ -89,8 +89,10 @@ class TestCalcSerializer(TestCase):
         self.assertEqual(new.parentjob.uuid, chem.parentjob.uuid)
 
     def test_serialize(self):
+        ctype = baker.make(CalcType)
         node = baker.make(CalcNode)
         node.data["test"] = "value"
+        node.calctype = ctype
 
         jobdata = JobSerializer(node.parentjob).data
         chemdata = ChemNodeSerializer(node.chemnode).data
@@ -109,4 +111,4 @@ class TestCalcSerializer(TestCase):
         for k, v in expected.items():
             self.assertEqual(v, data[k])
 
-        self.assertEqual(data["calctype"]["uuid"], str(node.calctype.uuid))
+        self.assertEqual(data["calctype"]["uuid"], str(ctype.uuid))
