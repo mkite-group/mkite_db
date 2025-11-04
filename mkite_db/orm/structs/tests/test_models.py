@@ -1,24 +1,15 @@
 from model_bakery import baker
 from django.test import TestCase
 
-from mkite_db.orm.base.models import Formula
 from mkite_db.orm.jobs.models import Job
 from mkite_db.orm.structs.models import Crystal, SpaceGroups
 from mkite_core.models import CrystalInfo
 
 
 class CrystalCreator:
-    def create_formula(self):
-        formula, _ = Formula.objects.get_or_create(
-            name="Si2 +0",
-            charge=0,
-        )
-        return formula
-
     def create_crystal(self):
         crystal = baker.make(
             Crystal,
-            formula=self.create_formula(),
             spacegroup=SpaceGroups(227),
             species=["Si", "Si"],
             coords=[[0.0, 0.0, 0.0], [1.365, 1.365, 1.365]],
@@ -43,8 +34,3 @@ class TestStructs(TestCase):
 
         info = crystal.as_info()
         self.assertIsInstance(info, CrystalInfo)
-
-    def test_formula(self):
-        formula = self.creator.create_formula()
-        self.assertEqual(formula.name, "Si2 +0")
-        self.assertEqual(formula.charge, 0)

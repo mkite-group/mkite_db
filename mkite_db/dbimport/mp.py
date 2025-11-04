@@ -2,7 +2,7 @@ import os
 import numpy as np
 from typing import Iterable, List
 
-from mkite_core.models import CrystalInfo, EnergyForcesInfo, NodeResults
+from mkite_core.models import CrystalInfo, NodeResults, CalcInfo
 from .base import DbImporter, DbImporterError
 
 
@@ -69,9 +69,13 @@ class MPImporter(DbImporter):
 
     def convert_energy_forces(self, doc: dict) -> dict:
         num_atoms = len(getattr(doc, "structure"))
-        energy = getattr(doc, "energy_per_atom") * num_atoms
-        forces = np.zeros((num_atoms, 3)).tolist()
-        return EnergyForcesInfo(energy=energy, forces=forces).as_dict()
+        info = CalcInfo()
+        info.set_calctype("energy_forces")
+        info.data = {
+            "energy": getattr(doc, "energy_per_atom") * num_atoms,
+            "forces": np.zeros((num_atoms, 3)).tolist(),
+        }
+        return info.as_dict()
 
     def query(self, rester: str, query_function: str, **kwargs) -> Iterable[dict]:
         with self.get_rester() as mpr:

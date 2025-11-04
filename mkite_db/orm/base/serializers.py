@@ -2,32 +2,7 @@ from rest_framework import serializers
 
 from mkite_db.orm.serializers import BaseSerializer
 from mkite_db.orm.jobs.serializers import JobSerializer
-from .models import Formula, ChemNode, CalcNode
-
-
-class FormulaSerializer(BaseSerializer):
-    class Meta:
-        model = Formula
-        fields = (
-            "id",
-            "name",
-            "charge",
-        )
-
-    def to_internal_value(self, data):
-        if data is None:
-            modified = {}
-
-        elif type(data) == int:
-            modified = {"id": data}
-
-        elif type(data) == dict:
-            modified = data
-
-        else:
-            modified = {}
-
-        return super().to_internal_value(modified)
+from .models import ChemNode, CalcNode, CalcType
 
 
 class ChemNodeSerializer(BaseSerializer):
@@ -46,9 +21,24 @@ class ChemNodeSerializer(BaseSerializer):
         )
 
 
+class CalcTypeSerializer(BaseSerializer):
+    class Meta:
+        model = CalcType
+        fields = (
+            "id",
+            "uuid",
+            "name",
+        )
+        read_only_fields = (
+            "ctime",
+            "mtime",
+        )
+
+
 class CalcNodeSerializer(BaseSerializer):
     parentjob = JobSerializer(nested_field=True)
     chemnode = ChemNodeSerializer(nested_field=True)
+    calctype = CalcTypeSerializer(nested_field=True, required=False)
 
     class Meta:
         model = CalcNode
@@ -57,5 +47,7 @@ class CalcNodeSerializer(BaseSerializer):
             "uuid",
             "parentjob",
             "chemnode",
+            "calctype",
+            "data",
         )
         read_only_fields = ("ctime", "mtime")

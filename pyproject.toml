@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "mkite_db"
-version = "24.10.23"
+version = "25.11.03"
 description = "mkite: distributed computing platform for high-throughput materials simulations"
 authors = [{name = "Daniel Schwalbe-Koda", email = "dskoda@ucla.edu"}]
 readme = "README.md"

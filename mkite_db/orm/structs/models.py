@@ -4,7 +4,7 @@ from django.utils.translation import gettext_lazy as lazy
 
 from taggit.managers import TaggableManager
 from mkite_db.orm.repr import _named_repr
-from mkite_db.orm.base.models import DbEntry, ChemNode, Elements, Formula
+from mkite_db.orm.base.models import DbEntry, ChemNode, Elements
 
 
 class SpaceGroups(models.IntegerChoices):
@@ -241,12 +241,6 @@ class SpaceGroups(models.IntegerChoices):
 
 
 class Crystal(ChemNode):
-    formula = models.ForeignKey(
-        Formula,
-        on_delete=models.PROTECT,
-        related_name="crystals",
-    )
-
     spacegroup = models.PositiveSmallIntegerField(
         null=False,
         choices=SpaceGroups.choices,
@@ -275,6 +269,13 @@ class Crystal(ChemNode):
 
         return CrystalInfo.from_crystal(self)
 
+    @property
+    def formula(self):
+        if "formula" in self.attributes:
+            return self.attributes["formula"]
+        return None
+
     def __repr__(self):
         spgrp = SpaceGroups(self.spacegroup).label
-        return f"<{self.__class__.__name__}: {self.formula.name}, {spgrp} ({self.id})>"
+        formula = str(self.formula)
+        return f"<{self.__class__.__name__}: {formula}, {spgrp} ({self.id})>"

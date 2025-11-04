@@ -91,6 +91,10 @@ class Job(DbEntry):
             "ctime": self.ctime,
             "project": self.experiment.project.name,
             "experiment": self.experiment.name,
+            "inputs": [
+                inp.as_dict()
+                for inp in self.inputs.all()
+            ]
         }
 
     def as_info(self):
