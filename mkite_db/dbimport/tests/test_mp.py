@@ -7,7 +7,7 @@ from monty.serialization import loadfn
 from pkg_resources import resource_filename
 
 from pymatgen.core import Structure
-from mkite_core.models import CrystalInfo, EnergyForcesInfo, NodeResults, JobResults
+from mkite_core.models import CrystalInfo, NodeResults, JobResults
 from mkite_db.dbimport.mp import MPImporter, MP_KEY
 
 
@@ -68,8 +68,12 @@ class TestMPImporter(ut.TestCase):
         doc = response[0]
         info = self.dbimp.convert_energy_forces(doc)
         self.assertIsInstance(info, dict)
-        self.assertAlmostEqual(info["energy"], -5.42531402 * 2)
-        self.assertTrue((np.array(info["forces"]) < 1e-10).all())
+        self.assertTrue("data" in info)
+        self.assertTrue("calctype" in info)
+
+        data = info["data"]
+        self.assertAlmostEqual(data["energy"], -5.42531402 * 2)
+        self.assertTrue((np.array(data["forces"]) < 1e-10).all())
 
     def test_convert_doc(self):
         response = self.get_response()
