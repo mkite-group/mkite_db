@@ -41,7 +41,6 @@ THIRD_PARTY_APPS = ["django_extensions", "rest_framework", "taggit"]
 LOCAL_APPS = [
     "mkite_db.orm.base",
     "mkite_db.orm.jobs",
-    "mkite_db.orm.calcs",
     "mkite_db.orm.mols",
     "mkite_db.orm.structs",
     "mkite_db.workflow",
